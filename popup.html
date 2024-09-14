@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      width: 200px;
+    }
+
+    .scroll-container {
+      /* position: fixed; */
+      /* top: 20px; */
+      /* left: 20px; */
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 20px;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      opacity: 1;
+
+      margin-bottom: 15px;
+    }
+
+    .scroll-container.hide {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    .status-text {
+      margin-bottom: 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .status-text span {
+      color: #4caf50;
+      /* 绿色字体代表激活状态 */
+    }
+
+    @keyframes statusChange {
+      0% {
+        transform: scale(1);
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      50% {
+        transform: scale(1.1);
+        background-color: rgba(0, 100, 0, 0.9);
+      }
+
+      100% {
+        transform: scale(1);
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    .scroll-container.change {
+      animation: statusChange 0.5s ease-in-out;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="scroll-status" class="scroll-container">
+    <div class="status-text">Direction: <span id="direction">Down</span></div>
+    <div class="status-text">Status: <span id="status">Stopped</span></div>
+  </div>
+  <div class="btns">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="scrollUp">Up</button>
+    <button id="scrollDown">Down</button>
+  </div>
+
+  <input type="range" id="speed" min="1" max="20" value="5" />
+  <label for="speed">Speed: <span id="speedValue">5</span></label>
+
+  <!-- 弹窗 -->
+  <!-- <div id="controlPanel"
+    style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); background-color: lightgray; padding: 10px; border-radius: 5px;">
+    <h4>Scroll Control</h4>
+    <button id="scrollUp">Up</button>
+    <button id="scrollDown">Down</button>
+    <input type="range" id="speed" min="1" max="20" value="5">
+    <label for="speed">Speed: <span id="speedValue">5</span></label>
+  </div> -->
+  <script src="popup.js"></script>
+</body>
+
+</html>
