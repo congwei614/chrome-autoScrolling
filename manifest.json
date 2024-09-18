@@ -1,23 +1,14 @@
 {
-  "manifest_version": 3,
   "name": "Auto Scroller",
-  "version": "1.0",
   "description": "Automatically scrolls the page",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "scripting"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
+  "version": "1.0",
+  "manifest_version": 3,
   "action": {
     "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
-    }
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -25,8 +16,34 @@
         "<all_urls>"
       ],
       "js": [
-        "./content.js"
+        "content.js"
       ]
     }
-  ]
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "commands"
+  ],
+  "commands": {
+    "toggle-scroll": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Space"
+      },
+      "description": "Start or stop scrolling"
+    },
+    "increase-speed": {
+      "suggested_key": {
+        "default": "Ctrl+Right"
+      },
+      "description": "Increase scroll speed"
+    },
+    "decrease-speed": {
+      "suggested_key": {
+        "default": "Ctrl+Left"
+      },
+      "description": "Decrease scroll speed"
+    }
+  }
 }
